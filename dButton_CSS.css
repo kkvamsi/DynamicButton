@@ -21,7 +21,7 @@
    width: 24px;
    height: 24px;
    border: solid;
-   clear: left;
+   clear: both;
 }
 
 .leftMinus
@@ -30,21 +30,31 @@
   margin-left: 2px;
   width: 24px;
   height: 24px;
-  clear: both;
+  clear: left;
   margin-top: 2px;
   border:solid;
 }
 
 .rightPlus
 {
-
+   float: left;
+   margin-left: 1px;
+   width: 24px;
+   height: 24px;
+   border: solid;
+   clear: right;
 }
 
 .rightMinus
 {
-position: absolute;
-left:75px;
-top:10px;
+  float:left;
+clear:both;
+height:24px;
+width:24px;
+margin-left:2px;
+margin-top:2px;
+border:solid;
+
 }
 
 .topPlus
@@ -72,16 +82,18 @@ top:10px;
 
 .bottomPlus
 {
-position: absolute;
-top:40px;
-left:140px;
+float:right;
+clear:left;
+height:24px;
+width:24px;
+display:block;
+border:solid;
+margin-left:2px;
 }
 
 .bottomMinus
 {
-position: absolute;
-top:30px;
-left:45px;
+
 }
 
 .origin
@@ -97,9 +109,10 @@ line-height:57px;
 
 .parentDiv
 {
-width: 100%;
-display: grid;
-height: 500px;
+width: 200px;
+height:200px;
+
+
 }
 
 .divLeft
@@ -108,9 +121,14 @@ float: left;
 margin-left: 19px;
 margin-top: 2px;
 display: block;
-clear: left;
+clear: both;
 }
 
 .divRight
 {
+float:left;
+clear:right;
+display:block;
+margin-left:1px;
+margin-top: 2px;
 }
