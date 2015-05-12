@@ -1,4 +1,11 @@
+
 .parentDiv
+{
+
+
+}
+
+.alignDiv
 {
 float:left;
 position:relative;
@@ -8,6 +15,7 @@ border-width:1px;
 width:64px;
 height:64px;
 margin:auto;
+
 
 }
 
@@ -50,13 +58,14 @@ top:42px;
 
 .GpDiv
 {
-float:left;
+/* float:left;
 position:relative;
 text-align:center;
 border:solid;
 border-width:1px;
-height:64px;
+height:64px; */
 margin:auto;
+
 
 
 }
@@ -81,4 +90,32 @@ height:20px;
 .body
 {
 overflow-x:auto;
+}
+
+.topAlignDiv
+{
+position:relative;
+top:-67px;
+left:0px;
+text-align:center;
+border:solid;
+border-width:1px;
+width:64px;
+height:64px;
+margin:auto;
+float:left;
+}
+
+.downAlignDiv
+{
+position:relative;
+top:67px;
+left:0px;
+text-align:center;
+border:solid;
+border-width:1px;
+width:64px;
+height:64px;
+margin:auto;
+float:left;
 }
