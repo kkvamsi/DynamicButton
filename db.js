@@ -38,8 +38,8 @@ $('.leftBtn').click(function(){
 	}
 	else{
 
-		if($(this).parents('.row').find('.parentDiv:first-child').html()==''){
-			$(this).parents('.row').find('.parentDiv:first-child').remove();
+		if($(this).parents('.row').find('.parentDiv:nth-child(1)').html()==''){
+			$(this).parents('.row').find('.parentDiv:nth-child(1)').remove();
 		}
 		else{
 			add_colsleft();
@@ -57,32 +57,23 @@ $('.rightBtn').click(function(){
 
 	count=++count;
 	var rightPath=$(this).parent();
+	var _col=$(this).parents('.row').find('.parentDiv').length;
 	
-	if($(this).parents('.parentDiv').next().html()==''){
-		$(this).parents('.parentDiv').next().remove();
+	if($(this).parents('.parentDiv').next('.parentDiv').html()==''){
+		$(this).parents('.parentDiv').next('.parentDiv').remove();
 	}
 	else{
-		if($(this).parents('.row').find('.parentDiv:last-child').html()==''){
-			$(this).parents('.row').find('.parentDiv:last-child').remove();
+		if($(this).parents('.row').find('.parentDiv:nth-child('+_col+')').html()==''){
+			$(this).parents('.row').find('.parentDiv:nth-child('+_col+')').remove();
 		}
 		else{
 			add_colsright();
 			$(this).parents('.row').find('.parentDiv:last-child').remove();
 		}
 	}
+	$('body').find('.row').find('.clear').remove();
+	$('body').find('.row').append('<div class="clear"></div>');
 	
-	$(this).parents('.row').append('<div class="clear"></div>');
-
-/*
-	if($(this).parents('.parentDiv').next().html()==''){
-		$(this).parents('.parentDiv').next().remove();
-	}
-	else{		
-		add_colsright();
-		$(this).parents('.parentDiv').next().remove();
-	}
-
-*/
 	$(this).parent().clone(true).insertAfter(rightPath);
 	$(this).parent().next().find($('.mainButton')).text(count);
 	add_cols($(this).parents('.row').attr('id'));
@@ -94,19 +85,49 @@ $('.topBtn').click(function(){
 
 	count=++count;
 	count_rows=++count_rows;
-	var topPath=$(this).parents('.row');
-	$(this).parents('.parentDiv').addClass('active');
-	$(this).parents('.row').clone(true).insertBefore(topPath);
-	$(this).parents('.row').prev().attr("id",'row'+count_rows);
-	$(this).parents('.row').prev().find('.parentDiv').addClass('border_white');
-	$(this).parents('.row').prev().find('.active').removeClass('border_white');
-	$(this).parents('.row').prev().find('.active').addClass('border_black');
-	$(this).parents('.row').prev().find('.active').find($('.mainButton')).text(count);
-	$(this).parents('.row').prev().find('.border_black').removeClass('active');
-	$(this).parents('.row').prev().find('.border_white').html('');
-	$(this).parents('.parentDiv').removeClass('active');
-	add_cols('row'+count_rows);
-	add_rows();
+	var _col=$(this).parents('.parentDiv').attr('class');
+	_col=_col.substring(_col.indexOf(' ')+1,_col.length);
+	console.log(_col);
+	
+	if($(this).parents('.row').attr('id')=='row0'){
+		var topPath=$(this).parents('.row');
+		$(this).parents('.parentDiv').addClass('active');
+		$(this).parents('.row').clone(true).insertBefore(topPath);
+		$(this).parents('.row').prev().attr("id",'row'+count_rows);
+		$(this).parents('.row').prev().find('.parentDiv').addClass('border_white');
+		$(this).parents('.row').prev().find('.active').removeClass('border_white');
+		$(this).parents('.row').prev().find('.active').addClass('border_black');
+		$(this).parents('.row').prev().find('.active').find($('.mainButton')).text(count);
+		$(this).parents('.row').prev().find('.border_black').removeClass('active');
+		$(this).parents('.row').prev().find('.border_white').html('');
+		$(this).parents('.parentDiv').removeClass('active');
+		add_cols('row'+count_rows);
+		add_rows();		
+	}
+	else if($(this).parents('.row').prev().find('.'+_col).html()==''){
+		$(this).parents('.row').prev().find('.'+_col).prev().remove();
+		$(this).parents('.parentDiv').clone(true).insertBefore($(this).parents('.row').prev().find('.'+_col));
+		$(this).parents('.row').prev().find('.'+_col).prev().find($('.mainButton')).text(count);
+		add_cols($(this).parents('.row').attr('id'));
+	}
+	
+	else{
+		/*$('.clear').remove();
+		$('.row').append('<div class="clear"></div>');
+		var topPath=$(this).parents('.row');
+		$(this).parents('.parentDiv').addClass('active');
+		$(this).parents('.row').clone(true).insertBefore(topPath);
+		$(this).parents('.row').prev().attr("id",'row'+count_rows);
+		$(this).parents('.row').prev().find('.parentDiv').addClass('border_white');
+		$(this).parents('.row').prev().find('.active').removeClass('border_white');
+		$(this).parents('.row').prev().find('.active').addClass('border_black');
+		$(this).parents('.row').prev().find('.active').find($('.mainButton')).text(count);
+		$(this).parents('.row').prev().find('.border_black').removeClass('active');
+		$(this).parents('.row').prev().find('.border_white').html('');
+		$(this).parents('.parentDiv').removeClass('active');
+		add_cols('row'+count_rows);
+		add_rows();*/
+	}
 
 });
 
@@ -117,6 +138,8 @@ $('.downBtn').click(function(){
 
 	count=++count;
 	count_rows=++count_rows;
+	$('.clear').remove();
+	$('.row').append('<div class="clear"></div>');
 	var topPath=$(this).parents('.row');
 	$(this).parents('.parentDiv').addClass('active');
 	$(this).parents('.row').clone(true).insertAfter(topPath);
