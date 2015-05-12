@@ -105,10 +105,10 @@ $('.topBtn').click(function(){
 		add_rows();		
 	}
 	else if($(this).parents('.row').prev().find('.'+_col).html()==''){
-		$(this).parents('.row').prev().find('.'+_col).prev().remove();
 		$(this).parents('.parentDiv').clone(true).insertBefore($(this).parents('.row').prev().find('.'+_col));
-		$(this).parents('.row').prev().find('.'+_col).prev().find($('.mainButton')).text(count);
 		add_cols($(this).parents('.row').attr('id'));
+		$(this).parents('.row').prev().find('.'+_col).next('.'+_col).remove();
+		$(this).parents('.row').prev().find('.'+_col).find($('.mainButton')).text(count);
 	}
 	
 	else{
