@@ -1,3 +1,16 @@
+.clear{
+clear:both;
+}
+
+.border_black{
+border: 1px solid #000 !important;
+}
+
+.border_white{
+  border: 1px solid #fff !important;
+}
+
+
 .parentDiv
 {
 float:left;
